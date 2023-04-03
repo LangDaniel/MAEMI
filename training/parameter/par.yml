@@ -1,0 +1,55 @@
+output:
+    output_dir: './output/'
+    sub: 'run'
+
+model:
+    model: 'mae_vit_base'
+    epochs: 200
+    in_chans: 4
+    batch_size: 4
+    accum_iter: 1 #Accumulate gradient iterations (for increasing the effective batch size under memory constraints)
+    patch_size: [8, 8, 8]
+    mask_ratio: 0.75
+    norm_pix_loss: False
+    weight_decay: 0.05
+    lr: 0.001
+    blr: 0.0001 #base learning rate: absolute_lr = base_lr * total_batch_size / 256
+    min_lr: 0.0001
+    warmup_epochs: 7
+    seed: 0
+    resume: './../data/weights/mae_visualize_vit_base.pth' #resume from checkpoint
+    load_partial: ['blocks']
+    freeze_partial: False
+    load_optim: True
+    start_epoch: 0
+    distributed: False
+    num_workers: 20
+    dist_on_itp: False #url used to set up distributed training
+    pin_mem: True #Pin CPU memory in DataLoader for more efficient (sometimes) transfer to GPU
+    device: 'cuda:0'
+    save_every: 100
+
+data:
+    general:
+        shape: [80, 80, 16]
+        modalites: ['t1_non_FS', 't1_FS', 'phase1', 'phase2']
+        channel_first: True
+        patch_file: './../data/patch_data/after_m05_s03_space14x14x2_size120x120x32/normal/patches.h5'
+        scale: False 
+        label_column: 'volume'
+        label_mapping: {}
+        one_hot: False
+    train:
+        label_file: './../data/labels/anomaly/train.csv' 
+        training: True
+        augment:
+            flip: True
+            rot: True
+            zoom: False
+            offset: False #[-0.025, 0.025]
+            noise: False
+            blur: False
+    valid:
+        label_file: './../data/labels/anomaly/valid.csv' 
+        training: False
+        augment: []
