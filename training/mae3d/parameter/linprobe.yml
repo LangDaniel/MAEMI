@@ -1,0 +1,62 @@
+output:
+    output_dir: './output/linprobe/'
+    sub: 'run'
+
+training:
+    epochs: 200
+    batch_size: 16
+    accum_iter: 1 #Accumulate gradient iterations (for increasing the effective batch size under memory constraints)
+    patch_size: [8, 8, 4]
+    mask_ratio: 0.85
+    norm_pix_loss: False
+    weight_decay: 0.05
+    lr: 0.001
+    blr: 0.0001 #base learning rate: absolute_lr = base_lr * total_batch_size / 256
+    min_lr: 0.0001
+    warmup_epochs: 7
+    seed: 0
+    resume: '' #resume from checkpoint
+    start_epoch: 0
+    distributed: False
+    num_workers: 20
+    dist_on_itp: False #url used to set up distributed training
+    pin_mem: True #Pin CPU memory in DataLoader for more efficient (sometimes) transfer to GPU
+    device: 'cuda:1'
+    save_every: 5
+    train_weights: 'None'
+    val_weights: 'None'
+
+data:
+    general:
+        shape: [128, 128, 16]
+        channel_first: True
+        patch_file: '../../data/patch_data/NSCLC_size_130x130x130_space_1x1x3/patches.h5'
+        scale: [[-600., 200.], [0., 1.]]
+        label_column: 'histology'
+        label_mapping: {'SCC': 0, 'AC': 1}
+        one_hot: True
+
+    train:
+        label_file: '../../data/label/histology/mix_all/AC_vs_SCC/train.csv' 
+        training: True
+        augment:
+            flip: False
+            rot: False
+            zoom: False
+            offset: False
+            noise: False
+            blur: False
+            deform: False
+    valid:
+        label_file: '../../data/label/histology/mix_all/AC_vs_SCC/valid.csv' 
+        training: False
+        augment: ['rot_90', 'flip_coronal', 'flip_sagittal']
+
+model:
+  model: 'vit_base'
+  nb_classes: 2
+  eval: False
+  global_pool: True
+  in_chans: 1
+  finetune: './output/pretrain/rough_search/run_2/checkpoint-50.pth'
+  orig_shape: [16, 16, 4]
