@@ -2,4 +2,4 @@
 
 Code for your breast cancer anomaly detection [paper](https://arxiv.org/abs/2303.05861).
 
-MAEMI
+![MAEMI model](./maemi.png)
