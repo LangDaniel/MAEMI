@@ -151,9 +151,9 @@ df['Type'] = df['SeriesDescription'].map(modality_dict)
 # remove segmentations from df
 df = df[df['Modality'] == 'MR']
 
-root_dir = Path('./../../data/TCIA') / collection
+root_dir = Path('./../data/TCIA') / collection
 
-for ii, row in df.iterrows():
+for ii, row in df.iloc[:20].iterrows():
     pid = row['PatientID']
     typ = row['Type']
     print(f'{pid}: {typ}')
