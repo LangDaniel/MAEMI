@@ -4,9 +4,10 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 
-root_dir = Path('/mnt/IML-Proj/public_datasets/TCIA/Duke-Breast-Cancer-MRI/')
+root_dir = Path('./../../data/TCIA/Duke-Breast-Cancer-MRI/')
 bbox_RCS_df = pd.read_excel(root_dir / 'Annotation_Boxes.xlsx')
 bbox_RCS_df = bbox_RCS_df.set_index('Patient ID')
+verbose = False
 
 #-------------------------------------------------------------------- 
 # Duke dataset specific stuff, the order of coorinates is strange, see:
@@ -105,6 +106,9 @@ for pid, bb in bbox_RCS_df.iterrows():
         bbox_LPS_df.loc[idx] = [pid, *bbox_LPS]
         idx +=1
     except (Exception, ArithmeticError) as e: 
-        raise ValueError(f'failed: {e}')
+        if verbose:
+            print(f'failed: {e}')
+        else:
+            print('failed')
 
-bbox_LPS_df.to_csv('./../../../data/bboxes/bboxes_GTV_LPS.csv', index=False)
+bbox_LPS_df.to_csv('./../../data/bboxes/bboxes_ROI_LPS.csv', index=False)

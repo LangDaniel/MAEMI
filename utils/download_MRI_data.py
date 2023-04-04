@@ -153,7 +153,7 @@ df = df[df['Modality'] == 'MR']
 
 root_dir = Path('./../data/TCIA') / collection
 
-for ii, row in df.iloc[:20].iterrows():
+for ii, row in df.iloc[20:45].iterrows():
     pid = row['PatientID']
     typ = row['Type']
     print(f'{pid}: {typ}')

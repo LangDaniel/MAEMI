@@ -2,7 +2,7 @@ from pathlib import Path
 import pandas as pd
 import numpy as np
 
-root_dir = Path('./../data/TCIA/Duke-Breast-Cancer-MRI/')
+root_dir = Path('./../../data/TCIA/Duke-Breast-Cancer-MRI/')
 cases = sorted([ff for ff in root_dir.iterdir() if ff.is_dir()])
 
 sgmt_df = pd.DataFrame(columns=['identifier', 'segmentation'])
@@ -48,4 +48,4 @@ mask = (
 )
 
 df = df[mask]
-df.to_csv('./../data/file_paths.csv', index=False)
+df.to_csv('./../../data/file_paths.csv', index=False)

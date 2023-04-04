@@ -115,6 +115,6 @@ class BboxGen():
         return bbox_df
 
 if __name__ == '__main__':
-    root_dir = Path('./../data/TCIA/Duke-Breast-Cancer-MRI/')
+    root_dir = Path('./../../data/TCIA/Duke-Breast-Cancer-MRI/')
     bbgen = BboxGen(root_dir)
-    bbgen.generate_bboxes('./../data/bboxes/breast_tissue_complete_from_sgmt.csv')
+    bbgen.generate_bboxes('./../../data/bboxes/breast_tissue_complete_from_sgmt.csv')
