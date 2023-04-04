@@ -1,0 +1,9 @@
+data/TCIA
+data/patch_data
+.ipynb_checkpoints
+__pycache__
+nohup.out
+training/log
+training/output/
+training/parameter/*
+inference/prediction/
