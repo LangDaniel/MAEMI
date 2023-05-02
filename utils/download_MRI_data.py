@@ -1,3 +1,5 @@
+# to be run with the 'medimg' conda env
+
 from pathlib import Path
 import requests
 from zipfile import ZipFile
@@ -46,9 +48,12 @@ base_url = 'https://services.cancerimagingarchive.net/services/v4/TCIA/query'
 client = TCIAClient(base_url)
 
 collection = 'Duke-Breast-Cancer-MRI'
+
+print('#'*15 + ' retrieving series data')
 series_df = pd.DataFrame(
     data=client.get_json('getSeries', {'Collection': collection})
 )
+print('#'*15 + ' retrieving patient data ')
 patient_df = pd.DataFrame(
     data=client.get_json('getPatientStudy', {'Collection': collection})
 )
@@ -152,6 +157,9 @@ df['Type'] = df['SeriesDescription'].map(modality_dict)
 df = df[df['Modality'] == 'MR']
 
 root_dir = Path('./../data/TCIA') / collection
+root_dir.mkdir(parents=True)
+
+print('#'*15 + ' started download ')
 
 for ii, row in df.iloc[20:45].iterrows():
     pid = row['PatientID']
@@ -166,3 +174,5 @@ for ii, row in df.iloc[20:45].iterrows():
         client.get_image(uid, path, True, True)
     except Exception as e:
         print(f'failed {e}')
+
+print('#'*15 + ' ended download ')
