@@ -5,7 +5,7 @@ Clone the segmentation model from the
 and run `main.sh` in the `duke_sgmt` conda environment.
 
 The following fixes have been applied for `3D-Breast-FGT-and-Blood-Vessel-Segmentation` to work:
-In `predict.py` specify arguments in `pred_and_save_masks_3d_simple`:
+In `predict.py` specify the arguments of `pred_and_save_masks_3d_simple()`:
 ```
 pred_and_save_masks_3d_simple(
     saved_model_path=args.model_save_path,
