@@ -161,7 +161,7 @@ root_dir.mkdir(parents=True)
 
 print('#'*15 + ' started download ')
 
-for ii, row in df.iloc[20:45].iterrows():
+for ii, row in df.iterrows():
     pid = row['PatientID']
     typ = row['Type']
     print(f'{pid}: {typ}')
