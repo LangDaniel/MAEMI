@@ -1,3 +1,4 @@
+# run in the medimg conda environment
 from pathlib import Path
 import pickle
 import SimpleITK as sitk
@@ -373,9 +374,9 @@ if __name__ == '__main__':
     space_str = 'x'.join([str(ii) for ii in spacing]).replace('.', '')
     size_str = '200x200x50' #'x'.join([str(int(ii)) for ii in min_size_mm]).replace('.', '')
 
-    bbox_file = f'./../../data/bboxes/breast_tissue_from_sgmt.csv'
+    bbox_file = f'./../../data/bboxes/adjusted_size_200-350x200-350x50-100/breast_tissue_complete_from_sgmt.csv'
     path_file = './../../data/file_paths.csv'
-    side_file = './../../data/TCIA/Duke-Breast-Cancer-MRI/Clinical_and_Other_Features.xlsx'
+    side_file = './../../data/TCIA/Clinical_and_Other_Features.xlsx'
 
     output_file = f'./../../data/patch_data/complete_clc_mean{mean_str}_'\
         f'std{std_str}_space{space_str}_size{size_str}/patches.h5'
@@ -402,7 +403,7 @@ if __name__ == '__main__':
     patch_gen.normalize_image = lambda img: normalize_image(img, std=std, mean=mean)
 
     # testing
-    #patch_gen.case_df = patch_gen.case_df.iloc[:2]
+    # patch_gen.case_df = patch_gen.case_df.iloc[:2]
     
     patch_gen.to_disk()
 

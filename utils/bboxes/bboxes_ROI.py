@@ -1,3 +1,4 @@
+# run in the medimg conda environment
 from pathlib import Path
 import SimpleITK as sitk
 import pandas as pd
@@ -5,7 +6,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 root_dir = Path('./../../data/TCIA/Duke-Breast-Cancer-MRI/')
-bbox_RCS_df = pd.read_excel(root_dir / 'Annotation_Boxes.xlsx')
+bbox_RCS_df = pd.read_excel(root_dir.parent / 'Annotation_Boxes.xlsx')
 bbox_RCS_df = bbox_RCS_df.set_index('Patient ID')
 verbose = False
 

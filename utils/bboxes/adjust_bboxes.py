@@ -1,3 +1,4 @@
+# run in the medimg conda environment
 from pathlib import Path
 import pandas as pd
 import numpy as np
@@ -74,7 +75,7 @@ for _, row in bbox_df.iloc[:].iterrows():
     adjusted_df.loc[idx] = [row['identifier'], *adjusted_bb]
     idx += 1
 
-gtv_df = pd.read_csv('./../../data/bboxes/bboxes_GTV_LPS.csv')
+gtv_df = pd.read_csv('./../../data/bboxes/bboxes_ROI_LPS.csv')
 merged_df = adjusted_df.merge(gtv_df, on='identifier', suffixes=('_adj', '_gtv'))
 
 while(True):
