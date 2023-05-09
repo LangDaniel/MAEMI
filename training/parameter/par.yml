@@ -4,12 +4,12 @@ output:
 
 model:
     model: 'mae_vit_base'
-    epochs: 200
-    in_chans: 4
-    batch_size: 4
+    epochs: 1000
+    in_chans: 2
+    batch_size: 6
     accum_iter: 1 #Accumulate gradient iterations (for increasing the effective batch size under memory constraints)
-    patch_size: [8, 8, 8]
-    mask_ratio: 0.75
+    patch_size: [8, 8, 2]
+    mask_ratio: 0.90
     norm_pix_loss: False
     weight_decay: 0.05
     lr: 0.001
@@ -27,24 +27,28 @@ model:
     dist_on_itp: False #url used to set up distributed training
     pin_mem: True #Pin CPU memory in DataLoader for more efficient (sometimes) transfer to GPU
     device: 'cuda:0'
-    save_every: 100
+    save_every: 200
 
 data:
     general:
-        shape: [80, 80, 16]
+        shape: [240, 168, 8]
+        margin: [[0, 0], [0, 0], [0, 0]]
         modalites: ['t1_non_FS', 't1_FS']
         channel_first: True
+        pathology: 'normal'
         patch_file: './../data/patch_data/complete_clc_mean05_std025_space075x075x10_size200x200x50/patches.h5'
         scale: False 
         label_column: 'volume'
         label_mapping: {}
         one_hot: False
+        max_value: 1.5
+        min_value: 0.001
     train:
         label_file: './../data/labels/anomaly_no_bilateral/train.csv' 
         training: True
         augment:
             flip: True
-            rot: True
+            rot: False
             zoom: False
             offset: False #[-0.025, 0.025]
             noise: False
