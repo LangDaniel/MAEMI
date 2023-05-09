@@ -32,15 +32,15 @@ model:
 data:
     general:
         shape: [80, 80, 16]
-        modalites: ['t1_non_FS', 't1_FS', 'phase1', 'phase2']
+        modalites: ['t1_non_FS', 't1_FS']
         channel_first: True
-        patch_file: './../data/patch_data/after_m05_s03_space14x14x2_size120x120x32/normal/patches.h5'
+        patch_file: './../data/patch_data/complete_clc_mean05_std025_space075x075x10_size200x200x50/patches.h5'
         scale: False 
         label_column: 'volume'
         label_mapping: {}
         one_hot: False
     train:
-        label_file: './../data/labels/anomaly/train.csv' 
+        label_file: './../data/labels/anomaly_no_bilateral/train.csv' 
         training: True
         augment:
             flip: True
@@ -50,6 +50,6 @@ data:
             noise: False
             blur: False
     valid:
-        label_file: './../data/labels/anomaly/valid.csv' 
+        label_file: './../data/labels/anomaly_no_bilateral/valid.csv' 
         training: False
         augment: []
