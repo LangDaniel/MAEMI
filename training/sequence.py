@@ -3,8 +3,8 @@ from pathlib import Path
 import numpy as np
 import pandas as pd
 import h5py
-from scipy.ndimage.interpolation import zoom
-from scipy.ndimage import gaussian_filter
+#from scipy.ndimage.interpolation import zoom
+#from scipy.ndimage import gaussian_filter
 from torch.utils.data import Dataset
 import torch
 
@@ -317,7 +317,7 @@ class CustomDataset(Dataset):
             n_classes = len(np.unique(list(map_dict.values())))
             label = np.eye(n_classes)[int(label)].astype(np.float32)
         else:
-            label = np.array(label, dtype=np.int)
+            label = np.array(label, dtype=int)
 
         return label
     # ---------------------------------------------------------------- 
