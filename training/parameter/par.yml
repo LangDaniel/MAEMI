@@ -27,6 +27,7 @@ model:
     dist_on_itp: False #url used to set up distributed training
     pin_mem: True #Pin CPU memory in DataLoader for more efficient (sometimes) transfer to GPU
     device: 'cuda:0'
+    force_not_distributed: True
     save_every: 200
 
 data:
