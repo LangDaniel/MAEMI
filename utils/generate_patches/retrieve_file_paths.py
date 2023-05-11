@@ -12,7 +12,7 @@ idx = 0
 
 for ff in cases:
     pid = ff.stem
-    file = ff / f'SEG/{pid}.nii.gz'
+    file = (ff / f'SEG/{pid}.nii.gz').resolve()
     if file.exists():
         sgmt_df.loc[idx] = [pid, str(file)]
         idx += 1
@@ -27,7 +27,7 @@ for ff in cases:
     pid = ff.stem
     file_path = []
     for sub in cols[1:]:
-        path = ff / sub
+        path = (ff / sub).resolve()
         if path.exists():
             file_path.append(path)
         else:
