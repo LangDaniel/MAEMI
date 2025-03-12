@@ -11,10 +11,12 @@ Code for your breast cancer anomaly detection paper.
 ## Cite as
 
 ```
-@article{lang2023MAEMI,
-  title={3D Masked Autoencoders with Application to Anomaly Detection in Non-Contrast Enhanced Breast MRI},
-  author={Lang, Daniel M and Schwartz, Eli and Bercea, Cosmin I and Giryes, Raja and Schnabel, Julia A},
-  journal={arXiv preprint arXiv:2303.05861},
-  year={2023}
+@inproceedings{lang2023multispectral,
+    title={Multispectral 3d masked autoencoders for anomaly detection in non-contrast enhanced breast mri},
+    author={Lang, Daniel M and Schwartz, Eli and Bercea, Cosmin I and Giryes, Raja and Schnabel, Julia A},
+    booktitle={MICCAI Workshop on Cancer Prevention through Early Detection},
+    pages={55--67},
+    year={2023},
+    organization={Springer}
 }
 ```
