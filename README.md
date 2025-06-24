@@ -1,6 +1,6 @@
 # 3D Masked Autoencoders with Application to Anomaly Detection in Non-Contrast Enhanced Breast MRI 
 
-Code for your breast cancer anomaly detection paper.
+Code for our breast cancer anomaly detection paper.
 
 ![MAEMI model](./maemi.png)
 
