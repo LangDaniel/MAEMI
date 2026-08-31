@@ -6,6 +6,8 @@ matplotlib==3.5.1
 h5py==3.6.0
 requests==2.27.1
 PyYAML==6.0
+# after install, apply the timm fix required by the original MAE repo:
+# https://github.com/huggingface/pytorch-image-models/issues/420#issuecomment-776459842
 timm==0.3.2
 torch==1.13.0
 torchvision==0.14.0
