@@ -4,7 +4,7 @@
 [![License](https://img.shields.io/badge/license-Apache%202.0-green.svg)](./LICENSE.md)
 [![Python](https://img.shields.io/badge/python-3.9-blue.svg)](./requirements.txt)
 
-A from-scratch extension of [Masked Autoencoders (He et al., 2022)](https://github.com/facebookresearch/mae)
+Extension of [Masked Autoencoders (He et al., 2022)](https://github.com/facebookresearch/mae)
 from 2D natural images to **(3D) volumetric, multi-channel data**. The
 2D ViT patch embedding, masking, and sin-cos positional encoding of the
 original MAE are reimplemented for 3D tensors, so the
